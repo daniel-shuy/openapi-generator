@@ -439,6 +439,16 @@ public abstract class AbstractCSharpCodegen extends DefaultCodegen implements Co
             property.isInnerEnum = false;
             property.isString = false;
         }
+
+        // fix incorrect data types for maps of maps
+        if (property.datatypeWithEnum.contains("List>") && property.items != null) {
+            property.datatypeWithEnum = property.datatypeWithEnum.replace("List>", property.items.datatypeWithEnum + ">");
+            property.dataType = property.datatypeWithEnum;
+        }
+        if (property.datatypeWithEnum.contains("Dictionary>") && property.items != null) {
+            property.datatypeWithEnum = property.datatypeWithEnum.replace("Dictionary>", property.items.datatypeWithEnum + ">");
+            property.dataType = property.datatypeWithEnum;
+        }
     }
 
     @Override
