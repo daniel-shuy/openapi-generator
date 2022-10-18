@@ -90,8 +90,7 @@ open class GenerateTask : DefaultTask() {
     /**
      * The Open API 2.0/3.x specification location.
      */
-    @get:InputFile
-    @PathSensitive(PathSensitivity.RELATIVE)
+    @Input
     val inputSpec = project.objects.property<String>()
 
     /**
